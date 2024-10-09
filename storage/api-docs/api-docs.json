@@ -1,0 +1,218 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Dokumentasi API",
+        "description": "API Documentation",
+        "contact": {
+            "email": "rezkiandra4123@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://post_scheduler.test",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/api/license": {
+            "get": {
+                "tags": [
+                    "Licenses"
+                ],
+                "summary": "Get list of licenses",
+                "description": "Returns list of licenses",
+                "operationId": "35ad07dcd84da9837cb74ef3fc6cc91d",
+                "responses": {
+                    "200": {
+                        "description": "Licenses retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Licenses not found"
+                    }
+                }
+            }
+        },
+        "/api/license/edit/{license}": {
+            "get": {
+                "tags": [
+                    "Licenses"
+                ],
+                "summary": "Edit license by key",
+                "description": "Returns license",
+                "operationId": "c3e9746ea1b6be509d1bf67741eaf508",
+                "parameters": [
+                    {
+                        "name": "key",
+                        "in": "path",
+                        "description": "License key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "License retrieved successfully"
+                    },
+                    "404": {
+                        "description": "License not found"
+                    }
+                }
+            }
+        },
+        "/api/license/generate": {
+            "post": {
+                "tags": [
+                    "Licenses"
+                ],
+                "summary": "Generate new license",
+                "description": "Returns license",
+                "operationId": "d1fa4849f651103fae844e8ba72229e1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "license_name": {
+                                        "type": "string"
+                                    },
+                                    "duration_day": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "license_name": "My License",
+                                    "duration_day": 30
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "License generated successfully"
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/license/update/{license}": {
+            "put": {
+                "tags": [
+                    "Licenses"
+                ],
+                "summary": "Update license by key",
+                "description": "Returns license",
+                "operationId": "33d0fb9e5305981c10f1fcd4f893d24f",
+                "parameters": [
+                    {
+                        "name": "license",
+                        "in": "path",
+                        "description": "License key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "license_name": {
+                                        "type": "string"
+                                    },
+                                    "domain_name": {
+                                        "type": "string"
+                                    },
+                                    "duration_day": {
+                                        "type": "integer"
+                                    },
+                                    "is_active": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "license_name": "My License",
+                                    "domain_name": "example.com",
+                                    "duration_day": 30,
+                                    "is_active": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "License updated successfully"
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/license/destroy/{license}": {
+            "delete": {
+                "tags": [
+                    "Licenses"
+                ],
+                "summary": "Delete license by key",
+                "description": "Returns license",
+                "operationId": "27934b950ab0f2574e2714c45046092c",
+                "parameters": [
+                    {
+                        "name": "license",
+                        "in": "path",
+                        "description": "License key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "License deleted successfully"
+                    },
+                    "404": {
+                        "description": "License not found"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "500": {
+                "description": "Server error"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Licenses",
+            "description": "Licenses"
+        }
+    ]
+}
